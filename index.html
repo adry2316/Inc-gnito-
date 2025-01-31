@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Valentín</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f9f9f9;
+            text-align: center;
+            position: relative;
+            width: 100%;
+            padding: 0 10%;  /* Regresé el padding a 10% para la primera parte */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        #yes {
+            background-color: #ff4d4d;
+            color: white;
+        }
+
+        #no {
+            background-color: #ccc;
+            color: black;
+        }
+
+        img {
+            width: 200px;
+            margin-top: 30px;
+            max-width: 100%;
+        }
+
+        .message {
+            margin-top: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5em;
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: none;
+            text-align: center;
+            width: 90%; /* Este sigue igual para ocupar más espacio horizontal */
+        }
+
+        .message img {
+            width: 400px;  /* Agrandé la imagen al doble */
+            margin-top: 15px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Imagen inicial -->
+        <img src="https://i.imgflip.com/8h26xs.png" alt="Peluches abrazados" id="initialImage">
+        
+        <h1>¿Quieres ser mi San Valentín?</h1>
+        <div class="buttons">
+            <button id="yes" onclick="accept()">Sí</button>
+            <button id="no" onclick="shrinkNo()">No</button>
+        </div>
+    </div>
+
+    <script>
+        let noButton = document.getElementById("no");
+        let yesButton = document.getElementById("yes");
+        let size = 1.5;
+        let clickCount = 0;
+
+        // Función para reducir el tamaño del botón "No" al hacer clic
+        function shrinkNo() {
+            clickCount++;
+
+            // Cambiar el texto después del primer clic
+            if (clickCount === 1) {
+                noButton.innerText = "¿Segura que no quieres?";
+            }
+
+            // Hacer que el botón se haga más pequeño poco a poco
+            if (size > 0.1) {
+                size -= 0.1;
+                noButton.style.fontSize = size + "em";
+                noButton.style.padding = (size * 10) + "px " + (size * 20) + "px";
+            }
+
+            // Después de varios clics, ocultar el botón
+            if (size <= 0.1) {
+                noButton.style.display = "none";
+            }
+        }
+
+        function accept() {
+            // Cambiar el texto y ocultar las opciones
+            document.querySelector("h1").style.display = "none";
+            document.querySelector(".buttons").style.display = "none";
+            document.getElementById("initialImage").style.display = "none";  // Ocultar la imagen inicial
+            
+            // Mostrar el mensaje final con la imagen
+            let messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.innerHTML = `
+                <p>¡Sabía que dirías que sí, mi Ker hermosa! ❤️</p>
+                <img src="https://sweezy-cursors.com/wp-content/uploads/cursor/milk-am
+      
